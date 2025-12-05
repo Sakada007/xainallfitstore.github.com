@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xain Outfit Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Language Switcher -->
+<div class="lang-switcher">
+  <label for="languageSelect">Language: </label>
+  <select id="languageSelect">
+    <option value="en">English</option>
+    <option value="kh">ខ្មែរ</option>
+  </select>
+</div>
+
+<main>
+  <section class="products" id="productList"></section>
+</main>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalHeader">Selected Products</h2>
+    <ul id="selectedList"></ul>
+    <div class="buy-links">
+      <button id="buyTelegram">Telegram</button>
+      <button id="buyFacebook">Facebook</button>
+      <button id="buyWhatsApp">WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

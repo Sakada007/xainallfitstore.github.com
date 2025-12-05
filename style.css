@@ -1,0 +1,231 @@
+:root {
+  --bg-color: #f9f9f9;
+  --card-bg: #fff;
+  --text-color: #000;
+  --sub-text: #555;
+  --primary: #0088cc;
+  --primary-hover: #005f99;
+  --modal-bg: #fff;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Language Switcher */
+.lang-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  background: #0088cc;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.2s;
+}
+.lang-switcher:hover {
+  background: #005f99;
+  transform: scale(1.05);
+  animation: colorPulse 1s infinite alternate;
+}
+.lang-switcher select {
+  margin-left: 5px;
+  border-radius: 5px;
+  border: none;
+  padding: 3px 5px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  appearance: none;
+  background: #fff;
+  color: #0088cc;
+}
+.lang-switcher select:hover {
+  background: #e6f7ff;
+  color: #005f99;
+  transform: scale(1.05);
+  animation: selectPulse 1s infinite alternate;
+}
+.lang-switcher select option {
+  transition: background 0.3s, color 0.3s;
+}
+.lang-switcher select option:hover {
+  background: #00aaff;
+  color: #fff;
+}
+
+/* Products Section */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+.product {
+  background: var(--card-bg);
+  padding: 10px;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+.product img:hover {
+  transform: scale(1.1);
+}
+.product h3 { margin: 10px 0 5px 0; font-size: 18px; }
+.product p { font-size: 14px; color: var(--sub-text); }
+.product button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.product button:hover {
+  background: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+/* Modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.modal-content {
+  background: var(--modal-bg);
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 550px;
+  width: 95%;
+  animation: slideIn 0.4s ease-out;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.modal-content:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--primary);
+}
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.close:hover { color: var(--primary); }
+
+/* Selected list items */
+#selectedList li {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.3s, transform 0.2s;
+}
+#selectedList li:hover {
+  background: rgba(0,136,204,0.1);
+  transform: translateY(-2px);
+}
+
+/* Dropdown text only */
+#selectedList select.color-select option {
+  background: #fff;
+  color: #000;
+  padding: 5px;
+}
+
+/* Remove button */
+#selectedList button {
+  padding: 5px 10px;
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+#selectedList button:hover {
+  background: #cc0000;
+  animation: bounce 0.25s;
+}
+
+/* Buy links buttons */
+.buy-links button {
+  margin: 5px;
+  padding: 10px 15px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.buy-links button:hover {
+  background: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes bounce {0%{transform:scale(1);}25%{transform:scale(1.1);}50%{transform:scale(0.95);}75%{transform:scale(1.05);}100%{transform:scale(1);}}
+@keyframes inputBounce {0%{transform:scale(1);}25%{transform:scale(1.05);}50%{transform:scale(0.97);}75%{transform:scale(1.02);}100%{transform:scale(1);}}
+@keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+@keyframes slideIn {0%{transform:translateY(-30px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+@keyframes colorPulse {0%{background-color:#0088cc;}50%{background-color:#00aaff;}100%{background-color:#0088cc;}}
+@keyframes selectPulse {0%{background-color:#fff;color:#0088cc;}50%{background-color:#e6f7ff;color:#005f99;}100%{background-color:#fff;color:#0088cc;}}
+
+/* Dark mode */
+body.dark-mode {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #f0f0f0;
+  --sub-text: #ccc;
+  --primary: #1e90ff;
+  --primary-hover: #1c6fc1;
+  --modal-bg: #2a2a2a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product { width: 45%; }
+}
+@media (max-width: 480px) {
+  .products { flex-direction: column; align-items: center; }
+  .product { width: 90%; }
+  #selectedList li { flex-direction: column; align-items: flex-start; }
+  #selectedList select, #selectedList input, #selectedList button { margin-top: 5px; }
+}
