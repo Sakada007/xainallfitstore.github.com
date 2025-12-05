@@ -1,7 +1,64 @@
 const products = [
-  { id:1, name:{en:'Xain Classic Blazer', kh:'ស្រោមអាវ Xain Classic'}, price:79.99, img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=60', sizes:['S','M','L','XL'], colors:['Black','Blue','Gray'] },
-  { id:2, name:{en:'Xain Street Tee', kh:'អាវទ្រនាប់ផ្លូវ Xain'}, price:24.5, img:'https://images.unsplash.com/photo-1520975917766-6f85f9696d73?auto=format&fit=crop&w=800&q=60', sizes:['M','L','XL'], colors:['White','Black','Red'] },
-  { id:3, name:{en:'Xain Midi Dress', kh:'សម្លៀកបំពាក់ Xain Midi'}, price:59.0, img:'https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=60', sizes:['S','M','L'], colors:['Red','Green','Blue'] }
+  // Product 1: Dark blue/black oversized hoodie
+  { 
+    id: 1, 
+    name: {en:'Classic Oversized Hoodie', kh:'អាវរងារខែត្រជាក់'}, 
+    price: 49.99, 
+    img: 'photo/blazer.jpg',  // CHANGED from images/ to photo/
+    sizes: ['M','L','XL','XXL'], 
+    colors: ['Black','Navy','Grey'] 
+  },
+  
+  // Product 2: Graphic oversized T-shirts
+  { 
+    id: 2, 
+    name: {en:'Street Oversized Tee Collection', kh:'អាវយឺត​ ស្វេក'}, 
+    price: 24.5, 
+    img: 'photo/Over size shirts.jpg', // CHANGED from images/ to photo/
+    sizes: ['Free size'], 
+    colors: ['Black','White','Yellow','Maroon'] 
+  },
+  
+  // Product 3: Casual Sweat Shorts
+  { 
+    id: 3, 
+    name: {en:'Casual Sweatshorts', kh:'ខោខ្លីត្រជាក់'}, 
+    price: 29.0, 
+    img: 'photo/Short North.jpg', // CHANGED from images/ to photo/
+    sizes: ['S','M','L','XL'], 
+    colors: ['Light Gray','Charcoal Gray','Black'] 
+  },
+  
+  // Product 4: Mock-neck long-sleeve shirt (Green)
+  { 
+    id: 4, 
+    name: {en:'Mock Neck Longsleeve Shirt', kh:'អាវដៃវែងបុរស់'}, 
+    price: 35.0, 
+    img: "photo/Men's long-sleeved long-sleeved shirt green.jpg", // CHANGED from images/ to photo/
+    sizes: ['M','L','XL'], 
+    colors: ['Green','Gray','Brown'] 
+  },
+  
+  // Product 5: Sun-graphic hoodie
+  // Note: Ensure the filename matches exactly what is in your folder. I am using the name from your upload.
+  { 
+    id: 5, 
+    name: {en:'Sunrise Graphic Hoodie', kh:'អាវរងាសាច់ក្រាស់'}, 
+    price: 47.0, 
+    img: "photo/Factory direct sales of men's hoodies and top while.jpg", // CHANGED from images/ to photo/
+    sizes: ['M','L','XL'], 
+    colors: ['Cream','Khaki','Brown'] 
+  },
+  
+  // Product 6: Black graphic crewneck/oversized tee
+  { 
+    id: 6, 
+    name: {en:'Bold Graphic Oversized Tee', kh:'អាវយឺតទំហំធំមានអក្សរធំ'}, 
+    price: 26.5, 
+    img: 'photo/over.jpg', // CHANGED from images/ to photo/
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Grey','Red','Pink'] 
+  }
 ];
 
 const telegramLink = 'https://t.me/dafahasa';
@@ -24,7 +81,7 @@ function renderProducts(){
     const div = document.createElement('div');
     div.className = 'product';
     div.innerHTML = `
-      <img src='${p.img}' alt='${p.name[currentLang]}'>
+      <img src="${p.img}" alt="${p.name[currentLang]}" onerror="this.src='https://via.placeholder.com/200?text=Image+Not+Found'">
       <h3>${p.name[currentLang]}</h3>
       <p>${currentLang==='en'?'Price':'តម្លៃ'}: $${p.price.toFixed(2)}</p>
       <button onclick="selectProduct(${p.id})">${currentLang==='en'?'Select':'ជ្រើសរើស'}</button>
