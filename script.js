@@ -1,63 +1,58 @@
 const products = [
-  // Product 1: Dark blue/black oversized hoodie
+  // Added 'instock' property to all items
   { 
     id: 1, 
-    name: {en:'Classic Oversized Hoodie', kh:'អាវរងារខែត្រជាក់'}, 
+    name: {en:'Classic Oversized Hoodie', kh:'អាវក្រណាត់មានមួកធំទូលាយ'}, 
     price: 49.99, 
-    img: 'photo/blazer.jpg',  // CHANGED from images/ to photo/
+    img: 'photo/blazer.jpg', 
     sizes: ['M','L','XL','XXL'], 
-    colors: ['Black','Navy','Grey'] 
+    colors: ['Black','Navy','Grey'],
+    instock: 10 // New field
   },
-  
-  // Product 2: Graphic oversized T-shirts
   { 
     id: 2, 
-    name: {en:'Street Oversized Tee Collection', kh:'អាវយឺត​ ស្វេក'}, 
+    name: {en:'Street Oversized Tee Collection', kh:'អាវយឺតទំហំធំសម្រាប់ផ្លូវ'}, 
     price: 24.5, 
-    img: 'photo/Over size shirts.jpg', // CHANGED from images/ to photo/
-    sizes: ['Free size'], 
-    colors: ['Black','White','Yellow','Maroon'] 
+    img: 'photo/Over size shirts.jpg', 
+    sizes: ['M','L','XL'], 
+    colors: ['Black','White','Yellow','Maroon'],
+    instock: 25 // New field
   },
-  
-  // Product 3: Casual Sweat Shorts
   { 
     id: 3, 
-    name: {en:'Casual Sweatshorts', kh:'ខោខ្លីត្រជាក់'}, 
+    name: {en:'Casual Sweatshorts', kh:'ខោខ្លីកីឡាធម្មតា'}, 
     price: 29.0, 
-    img: 'photo/Short North.jpg', // CHANGED from images/ to photo/
+    img: 'photo/Short North.jpg', 
     sizes: ['S','M','L','XL'], 
-    colors: ['Light Gray','Charcoal Gray','Black'] 
+    colors: ['Light Gray','Charcoal Gray','Black'],
+    instock: 0 // Example of out of stock
   },
-  
-  // Product 4: Mock-neck long-sleeve shirt (Green)
   { 
     id: 4, 
-    name: {en:'Mock Neck Longsleeve Shirt', kh:'អាវដៃវែងបុរស់'}, 
+    name: {en:'Mock Neck Longsleeve Shirt', kh:'អាវដៃវែងកមូលឈរ'}, 
     price: 35.0, 
-    img: "photo/Men's long-sleeved long-sleeved shirt green.jpg", // CHANGED from images/ to photo/
+    img: "photo/Men's long-sleeved long-sleeved shirt green.jpg", 
     sizes: ['M','L','XL'], 
-    colors: ['Green','Gray','Brown'] 
+    colors: ['Green','Gray','Brown'],
+    instock: 15 // New field
   },
-  
-  // Product 5: Sun-graphic hoodie
-  // Note: Ensure the filename matches exactly what is in your folder. I am using the name from your upload.
   { 
     id: 5, 
-    name: {en:'Sunrise Graphic Hoodie', kh:'អាវរងាសាច់ក្រាស់'}, 
+    name: {en:'Sunrise Graphic Hoodie', kh:'អាវក្រណាត់មានមួកមានរូបព្រះអាទិត្យ'}, 
     price: 47.0, 
-    img: "photo/Factory direct sales of men's hoodies and top while.jpg", // CHANGED from images/ to photo/
+    img: "photo/Factory direct sales of men's hoodies and top while.jpg", 
     sizes: ['M','L','XL'], 
-    colors: ['Cream','Khaki','Brown'] 
+    colors: ['Cream','Khaki','Brown'],
+    instock: 5 // New field
   },
-  
-  // Product 6: Black graphic crewneck/oversized tee
   { 
     id: 6, 
     name: {en:'Bold Graphic Oversized Tee', kh:'អាវយឺតទំហំធំមានអក្សរធំ'}, 
     price: 26.5, 
-    img: 'photo/over.jpg', // CHANGED from images/ to photo/
+    img: 'photo/over.jpg', 
     sizes: ['S','M','L','XL'], 
-    colors: ['Black','Grey','Red','Pink'] 
+    colors: ['Black','Grey','Red','Pink'],
+    instock: 50 // New field
   }
 ];
 
@@ -80,11 +75,22 @@ function renderProducts(){
   products.forEach(p => {
     const div = document.createElement('div');
     div.className = 'product';
+    
+    // Check if out of stock to disable button and change text
+    const isOutOfStock = p.instock === 0;
+    const buttonText = isOutOfStock 
+      ? (currentLang==='en' ? 'Out of Stock' : 'អស់ពីស្តុក') 
+      : (currentLang==='en' ? 'Select' : 'ជ្រើសរើស');
+    const buttonState = isOutOfStock ? 'disabled style="background:#ccc; cursor:not-allowed;"' : '';
+
     div.innerHTML = `
       <img src="${p.img}" alt="${p.name[currentLang]}" onerror="this.src='https://via.placeholder.com/200?text=Image+Not+Found'">
       <h3>${p.name[currentLang]}</h3>
       <p>${currentLang==='en'?'Price':'តម្លៃ'}: $${p.price.toFixed(2)}</p>
-      <button onclick="selectProduct(${p.id})">${currentLang==='en'?'Select':'ជ្រើសរើស'}</button>
+      <p style="font-size: 0.9em; color: ${isOutOfStock ? 'red' : 'green'};">
+        ${currentLang==='en'?'In Stock':'នៅក្នុងស្តុក'}: ${p.instock}
+      </p>
+      <button onclick="selectProduct(${p.id})" ${buttonState}>${buttonText}</button>
     `;
     productList.appendChild(div);
   });
@@ -98,6 +104,13 @@ langSelect.addEventListener('change', ()=>{
 
 function selectProduct(id){
   const item = products.find(p => p.id === id);
+  
+  // Extra safety check: stop if out of stock
+  if(item.instock <= 0) {
+    alert(currentLang==='en' ? 'Sorry, this item is out of stock!' : 'សូមទោស ទំនិញនេះអស់ពីស្តុកហើយ!');
+    return;
+  }
+
   if(!selectedProducts.some(p => p.id === id)){
     selectedProducts.push({ ...item, qty:1, size:item.sizes[0], color:item.colors[0] });
   }
@@ -114,7 +127,7 @@ function updateModal(){
     li.innerHTML = `<span>${p.name[currentLang]} - $${p.price.toFixed(2)}</span>
       ${currentLang==='en'?'Size':'ទំហំ'}: <select onchange="updateSize(${index},this.value)">${p.sizes.map(s=>`<option value="${s}" ${s===p.size?'selected':''}>${s}</option>`).join('')}</select>
       ${currentLang==='en'?'Color':'ពណ៌'}: ${colorSelect}
-      Qty: <input type="number" min="1" value="${p.qty}" onchange="updateQty(${index},this.value)">
+      Qty: <input type="number" min="1" max="${p.instock}" value="${p.qty}" onchange="updateQty(${index},this.value)">
       <button onclick="removeProduct(${index})">${currentLang==='en'?'Remove':'ដកចេញ'}</button>`;
     selectedList.appendChild(li);
   });
@@ -128,7 +141,20 @@ function updateModal(){
 
 function updateSize(index,value){ selectedProducts[index].size = value; }
 function updateColor(index,value){ selectedProducts[index].color = value; }
-function updateQty(index,value){ selectedProducts[index].qty = parseInt(value)||1; updateModal(); }
+
+function updateQty(index,value){ 
+  const val = parseInt(value) || 1;
+  const max = selectedProducts[index].instock;
+  // Ensure they don't buy more than is in stock
+  if (val > max) {
+    alert(currentLang==='en' ? `Only ${max} items available!` : `មានតែ ${max} ទេដែលទំនេរ!`);
+    selectedProducts[index].qty = max;
+  } else {
+    selectedProducts[index].qty = val; 
+  }
+  updateModal(); 
+}
+
 function removeProduct(index){ selectedProducts.splice(index,1); updateModal(); }
 
 function sendMessage(platform){
