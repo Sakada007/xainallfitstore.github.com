@@ -53,6 +53,69 @@ const products = [
     sizes: ['S','M','L','XL'], 
     colors: ['Black','Grey','Red','Pink'],
     instock: 50 // New field
+  },
+  { 
+    id: 7, 
+    name: {en:'Bold Graphic Oversized Tee', kh:'អាវយឺតទំហំធំមានអក្សរធំ'}, 
+    price: 26.5, 
+    img: 'photo/swag1.jpg', 
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Orange','Yellow','While','Blue'],
+    instock: 10 // New field
+  },
+  { 
+    id: 8, 
+    name: {en:'Bold Graphic Oversized Tee', kh:'អាវយឺតទំហំធំមានអក្សរធំ'}, 
+    price: 26.5, 
+    img: 'photo/swag2.jpg', 
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Orange','Yellow','While','Blue','light blue','Royal Blue','Mustard Yellow'],
+    instock: 10 // New field
+  },
+  { 
+    id: 9, 
+    name: {en:'Graphic Hoodie', kh:'អាវរងាខែត្រជាក់'}, 
+    price: 26.5, 
+    img: 'photo/hooldie.jpg', 
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Orange','Yellow','While','Blue','light blue','Royal Blue','Mustard Yellow'],
+    instock: 10 // New field
+  },
+  { 
+    id: 10, 
+    name: {en:'Graphic Hoodie', kh:'អាវរងាខែត្រជាក់'}, 
+    price: 26.5, 
+    img: 'photo/hooldie2.jpg', 
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Orange','Yellow','While','Blue','light blue','Royal Blue','Mustard Yellow'],
+    instock: 10 // New field
+  },
+  { 
+    id: 11, 
+    name: {en:'Graphic Hoodie', kh:'អាវរងាខែត្រជាក់'}, 
+    price: 26.5, 
+    img: 'photo/hooldie3.jpg', 
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Orange','Yellow','While','Blue','light blue','Royal Blue','Mustard Yellow'],
+    instock: 10 // New field
+  },
+  { 
+    id: 12, 
+    name: {en:'Graphic Hoodie', kh:'អាវរងាខែត្រជាក់'}, 
+    price: 26.5, 
+    img: 'photo/hooldie4.jpg', 
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Orange','Yellow','While','Blue','light blue','Royal Blue','Mustard Yellow'],
+    instock: 10 // New field
+  },
+  { 
+    id: 13, 
+    name: {en:'Graphic Hoodie', kh:'អាវរងាខែត្រជាក់'}, 
+    price: 26.5, 
+    img: 'photo/hooldie5.jpg', 
+    sizes: ['S','M','L','XL'], 
+    colors: ['Black','Orange','Yellow','While','Blue','light blue','Royal Blue','Mustard Yellow'],
+    instock: 10 // New field
   }
 ];
 
