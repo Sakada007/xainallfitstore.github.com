@@ -122,6 +122,7 @@ const products = [
 const telegramLink = 'https://t.me/dafahasa';
 const facebookLink = 'https://www.facebook.com/profile.php?id=61584769916638';
 const whatsappLink = 'https://wa.me/0974369160';
+const tiktokLink='https://www.tiktok.com/@xain_outfit?_r=1&_t=ZS-91zVKe6RtPF';
 
 const productList = document.getElementById('productList');
 const modal = document.getElementById('modal');
@@ -154,7 +155,7 @@ function renderProducts(){
         ${currentLang==='en'?'In Stock':'នៅក្នុងស្តុក'}: ${p.instock}
       </p>
       <button onclick="selectProduct(${p.id})" ${buttonState}>${buttonText}</button>
-    `;
+      `;
     productList.appendChild(div);
   });
 }
@@ -167,19 +168,43 @@ langSelect.addEventListener('change', ()=>{
 
 function selectProduct(id){
   const item = products.find(p => p.id === id);
-  
-  // Extra safety check: stop if out of stock
+
   if(item.instock <= 0) {
     alert(currentLang==='en' ? 'Sorry, this item is out of stock!' : 'សូមទោស ទំនិញនេះអស់ពីស្តុកហើយ!');
     return;
   }
 
-  if(!selectedProducts.some(p => p.id === id)){
-    selectedProducts.push({ ...item, qty:1, size:item.sizes[0], color:item.colors[0] });
+  // កុំត្រួតពិនិត្យតែ ID — ត្រូវពិនិត្យ Size និង Color ទៀត
+  const defaultSize = item.sizes[0];
+  const defaultColor = item.colors[0];
+
+  const exist = selectedProducts.find(p =>
+    p.id === item.id &&
+    p.size === defaultSize &&
+    p.color === defaultColor
+  );
+
+  if (exist) {
+    exist.qty += 1; // បើមានកន្លែងខាងក្នុង then increase qty
+  } else {
+    selectedProducts.push({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      img: item.img,
+      sizes: item.sizes,
+      colors: item.colors,
+      instock: item.instock,
+      size: defaultSize,
+      color: defaultColor,
+      qty: 1
+    });
   }
+
   updateModal();
   modal.style.display = 'flex';
 }
+
 
 function updateModal(){
   selectedList.innerHTML = '';
@@ -229,11 +254,13 @@ function sendMessage(platform){
   if(platform==='telegram') window.open(`${telegramLink}?text=${encodeURIComponent(message)}`, '_blank');
   else if(platform==='facebook') window.open(facebookLink, '_blank');
   else if(platform==='whatsapp') window.open(`${whatsappLink}?text=${encodeURIComponent(message)}`, '_blank');
+  else if(platform==='tiktok') window.open(`${tiktokLink}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 document.getElementById('buyTelegram').addEventListener('click',()=>sendMessage('telegram'));
 document.getElementById('buyFacebook').addEventListener('click',()=>sendMessage('facebook'));
 document.getElementById('buyWhatsApp').addEventListener('click',()=>sendMessage('whatsapp'));
+document.getElementById('buyTikTok').addEventListener('click',()=>sendMessage('tiktok'));
 
 closeModal.addEventListener('click',()=>{ modal.style.display='none'; });
 window.addEventListener('click',e=>{ if(e.target===modal) modal.style.display='none'; });

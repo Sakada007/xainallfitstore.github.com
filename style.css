@@ -218,6 +218,7 @@ body {
 
 /* Remove button */
 #selectedList button {
+  margin-top: 5px;
   padding: 5px 10px;
   background: #ff4d4d;
   color: #fff;
@@ -246,7 +247,30 @@ body {
   background: var(--primary-hover);
   transform: scale(1.05);
 }
-
+.modal > .modal-content > .buy-links > #buyTelegram{
+  background-color:#0088CC;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+}
+.modal > .modal-content > .buy-links > #buyFacebook{
+  background-color: #1778F2;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+}
+.modal > .modal-content > .buy-links > #buyWhatsApp{
+  background-color:#25d366;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+}
+.modal > .modal-content > .buy-links > #buyTikTok{
+  background-color:#010101;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+}
 /* Animations */
 @keyframes bounce {0%{transform:scale(1);}25%{transform:scale(1.1);}50%{transform:scale(0.95);}75%{transform:scale(1.05);}100%{transform:scale(1);}}
 @keyframes inputBounce {0%{transform:scale(1);}25%{transform:scale(1.05);}50%{transform:scale(0.97);}75%{transform:scale(1.02);}100%{transform:scale(1);}}
