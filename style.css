@@ -8,6 +8,53 @@
   --modal-bg: #fff;
 }
 
+/* Gradient text animation */
+@keyframes gradientPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Gradient text animation */
+@keyframes gradientPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.welcome-bar {
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #edd0d0;
+  background: linear-gradient(90deg, #0088cc, #00cfff);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 0 0 10px 10px;
+  cursor: default;
+
+  /* Gradient text effect */
+  background: linear-gradient(90deg, #ff6a00, #ffeb3b, #00eaff, #ff6a00);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientPulse 3s ease infinite;
+}
+
+.welcome-bar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+.welcome-bar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: var(--bg-color);
@@ -219,13 +266,30 @@ body.dark-mode {
   --modal-bg: #2a2a2a;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Desktop is default */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .products { flex-wrap: wrap; justify-content: center; gap: 15px; }
   .product { width: 45%; }
+  .lang-switcher { top: 80px; right: 15px; padding: 4px 8px; }
+  .welcome-bar { font-size: 22px; padding: 12px 0; }
 }
-@media (max-width: 480px) {
-  .products { flex-direction: column; align-items: center; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .products { flex-direction: column; align-items: center; padding: 10px; }
   .product { width: 90%; }
+  .lang-switcher { top: 100px; right: 10px; padding: 3px 6px; font-size: 14px; }
+  .welcome-bar { font-size: 20px; padding: 10px 0; }
   #selectedList li { flex-direction: column; align-items: flex-start; }
-  #selectedList select, #selectedList input, #selectedList button { margin-top: 5px; }
+  #selectedList select, #selectedList input, #selectedList button { margin-top: 5px; width: 100%; }
+  button.dark-mode-btn { padding: 8px 12px; font-size: 14px; }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .welcome-bar { font-size: 18px; padding: 8px 0; }
+  .lang-switcher { top: 120px; right: 8px; font-size: 12px; }
+  .product img { height: 180px; }
 }
